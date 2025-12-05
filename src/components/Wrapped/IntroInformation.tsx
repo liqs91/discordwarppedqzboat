@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import WrappedContainer from "./WrappedContainer";
 import FatHeading from "./FatHeading";
@@ -6,11 +8,58 @@ import MutedText from "./MutedText";
 import { Button } from "../ui/button";
 import { ArrowRight, ExternalLink, PlugZap } from "lucide-react";
 import Faq from "../Preparation/Faq";
-import Image from "next/image";
 import Footer from "../Footer";
 
 // import MenuBar from '../MenuBar'; // 确保路径正确
 // import Projects from "../Projects";
+
+// Client component for example image to avoid hydration mismatch
+function ExampleWrappedImage() {
+  const imageData = React.useMemo(
+    () =>
+      encodeURIComponent(
+        JSON.stringify({
+          name: "John Doe",
+          totalWatchTime: 2505600, // 29 days in seconds
+          totalVideosWatched: 81737,
+          totalWatchSessions: 1823,
+          totalComments: 712,
+          averageSessionLength: 7200, // 120 minutes in seconds
+          mostUsedEmoji: "😂",
+          totalLikes: 8237,
+          persona: "Interaction Monster",
+        })
+      ),
+    []
+  );
+
+  // 确保服务器端和客户端渲染完全相同的结构
+  return (
+    <div
+      style={{
+        width: "100%",
+        maxHeight: "70vh",
+        aspectRatio: "9/16",
+        borderRadius: 10,
+        position: "relative",
+        backgroundColor: "#18181B",
+      }}
+      suppressHydrationWarning
+    >
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src={`/api/image?data=${imageData}`}
+        alt="Discord Wrapped Example"
+        style={{
+          width: "100%",
+          height: "100%",
+          objectFit: "contain",
+          borderRadius: 10,
+        }}
+      />
+    </div>
+  );
+}
 
 function IntroInformation({
   onContinue,
@@ -21,92 +70,97 @@ function IntroInformation({
 }) {
   return (
     <WrappedContainer>
-       {/* <MenuBar /> */}
-      <div className="grid md:grid-cols-2 gap-6 p-6 md:p-12">
-        <div className="flex flex-col justify-center gap-6 text-left">
-          <FatHeading>Discord Wrapped: Discover and Relive Your Top Discord Moments | Discord Wrapped</FatHeading>
-          <InfoText>Explore your most memorable Discord moments with Discord Wrapped. Dive into your top messages, favorite servers, and relive the highlights. Join the journey of your Discord memories today with Discord Wrapped!</InfoText>
+      <div className="w-full max-w-7xl mx-auto" suppressHydrationWarning>
+        {/* Hero Section */}
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center py-8 lg:py-16" suppressHydrationWarning>
+          <div className="flex flex-col gap-6 lg:gap-8 text-left">
+            <div className="space-y-4">
+              <FatHeading className="text-4xl md:text-5xl lg:text-6xl leading-tight">
+                Discord Checkpoint
+              </FatHeading>
+              <InfoText className="text-lg md:text-xl">
+                Discover and relive your top Discord moments. Explore your messages, servers, and conversations from the past year.
+              </InfoText>
+            </div>
 
+            <div className="space-y-4 pt-4">
+              <FatHeading className="text-2xl md:text-3xl" component="h2">
+                How it works
+              </FatHeading>
+              <MutedText className="text-base md:text-lg leading-relaxed">
+                Uncover the story of your Discord journey! Download your data in the <strong>'JSON - Machine-readable file'</strong> format from Discord Data Download.
+                <br /><br />
+                Your exported data does not include login credentials! For more info, check the FAQ section below.
+              </MutedText>
+            </div>
 
-         
-          <div className="max-w-xl">
-          <FatHeading className="mt-12 mb-6 text-2xl" component="h2" >
-          How it works
-             </FatHeading>
-             <MutedText className="break-words hyphens-auto">
-  Uncover the story of your Discord journey with 'Discord Wrapped'!
-  <br /><br />
-  Dive into your Discord stats by downloading your data in the <strong>'JSON - Machine-readable file'</strong> format from Discord Data Download. {" "}
-  {/* 链接部分 */}
-  <br /><br />
-  Your exported data does not include login credentials! For more info on how to verify this, look at the FAQ section below.
-</MutedText>
-
+            <div className="flex flex-col sm:flex-row gap-4 pt-4">
+              <Button 
+                className="dark w-full h-12 text-base opacity-60 cursor-not-allowed" 
+                disabled
+              >
+                Open Discord
+                <ExternalLink className="ml-2" size={18} />
+              </Button>
+              <Button 
+                className="flex-1 h-12 text-base opacity-60 cursor-not-allowed" 
+                disabled
+              >
+                I have my data
+                <ArrowRight className="ml-2" size={18} />
+              </Button>
+            </div>
+            <Button 
+              className="w-full sm:w-auto h-12 text-base bg-starship-100 hover:bg-starship-200 opacity-60 cursor-not-allowed" 
+              disabled
+            >
+              <PlugZap className="mr-2" size={18} />
+              Show demo Wrapped
+            </Button>
           </div>
 
-          <div className="flex flex-col gap-4">
-            <a
-              href="https://discord.com/settings/account"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Button className="dark w-full">
-                Open Discord and request my data export
-                <ExternalLink className="ml-2" size={16} />
-              </Button>
-            </a>
-            <Button onClick={onContinue} className="w-full">
-              I have my Discord data export, let's go!
-              <ArrowRight className="ml-2" size={16} />
-            </Button>
-            <Button className="dark w-full bg-starship-100" onClick={onDemo}>
-              Show demo Wrapped
-              <PlugZap className="ml-2" size={16} />
-            </Button>
+          <div className="flex justify-center items-center">
+            <div className="w-full max-w-sm lg:max-w-md">
+              <ExampleWrappedImage />
+            </div>
           </div>
         </div>
 
-        <div>
-          <Image
-            src={`/api/image?data=${encodeURIComponent(JSON.stringify({
-              name: "John Doe",
-              totalWatchTime: 2505600, // 29 days in seconds
-              totalVideosWatched: 81737,
-              totalWatchSessions: 1823,
-              totalComments: 712,
-              averageSessionLength: 7200, // 120 minutes in seconds
-              mostUsedEmoji: "😂",
-              totalLikes: 8237,
-              persona: "Interaction Monster"
-            }))}`}
-            alt="Discord Wrapped Example"
-            width={1080}
-            height={1920}
-            style={{
-              maxHeight: "70vh",
-              objectFit: "contain",
-              borderRadius: 10,
-            }}
-            unoptimized
-          />
+        {/* Video Showcase Section */}
+        <div className="py-12 lg:py-16" suppressHydrationWarning>
+          <div className="max-w-4xl mx-auto text-center space-y-6" suppressHydrationWarning>
+            <div className="space-y-3">
+              <FatHeading className="text-3xl md:text-4xl" component="h2">
+                See It In Action
+              </FatHeading>
+              <InfoText className="text-lg">
+                Watch this video to see Discord Wrapped in action and discover what insights await you!
+              </InfoText>
+            </div>
+            <div className="relative w-full aspect-video rounded-xl overflow-hidden shadow-2xl">
+              <iframe
+                width="100%"
+                height="100%"
+                src="https://www.youtube-nocookie.com/embed/lzDVs5Cx1fg"
+                title="Discord Checkpoint | Discord Wrapped Showcase"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+                className="absolute top-0 left-0 w-full h-full"
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* FAQ Section */}
+        <div className="py-12 lg:py-16" suppressHydrationWarning>
+          <div className="max-w-4xl mx-auto space-y-8" suppressHydrationWarning>
+            <FatHeading className="text-3xl md:text-4xl text-center" component="h2">
+              Frequently Asked Questions
+            </FatHeading>
+            <Faq />
+          </div>
         </div>
       </div>
-
-      {/* <FatHeading className="mt-12 mb-6 text-xl">A quick tutorial</FatHeading>
-      <iframe
-        width="560"
-        height="315"
-        src="https://www.youtube-nocookie.com/embed/uIvhVxNJAtc"
-        title="YouTube video player"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        allowFullScreen
-        className="max-w-[80vw]"
-      ></iframe> */}
-
-      <FatHeading className="mt-12 mb-6 text-xl"  component="span">
-        Frequently Asked Questions
-      </FatHeading>
-      <Faq />
 
       {/* <Projects /> */}
 

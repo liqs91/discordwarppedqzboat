@@ -9,7 +9,13 @@ import FatHeading from "@/components/Wrapped/FatHeading";
 import InfoText from "@/components/Wrapped/InfoText";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Loader2 } from "lucide-react";
-import IntroInformation from "@/components/Wrapped/IntroInformation";
+
+const IntroInformation = dynamic(
+  () => import("@/components/Wrapped/IntroInformation"),
+  {
+    ssr: false,
+  }
+);
 import SpotifyFramePlayer from "@/lib/Spotify/FramePlayer";
 import SpotifyPlayer from "@/components/Wrapped/SpotifyPlayer";
 import SpotifyInfoText from "@/components/Wrapped/SpotifyInfoText";
