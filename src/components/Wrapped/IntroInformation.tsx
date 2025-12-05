@@ -6,7 +6,6 @@ import MutedText from "./MutedText";
 import { Button } from "../ui/button";
 import { ArrowRight, ExternalLink, PlugZap } from "lucide-react";
 import Faq from "../Preparation/Faq";
-import heroImage from "@/app/hero.png";
 import Image from "next/image";
 import Footer from "../Footer";
 
@@ -69,8 +68,18 @@ function IntroInformation({
 
         <div>
           <Image
-            src={heroImage}
-            alt="Discord Wrapped"
+            src={`/api/image?data=${encodeURIComponent(JSON.stringify({
+              name: "John Doe",
+              totalWatchTime: 2505600, // 29 days in seconds
+              totalVideosWatched: 81737,
+              totalWatchSessions: 1823,
+              totalComments: 712,
+              averageSessionLength: 7200, // 120 minutes in seconds
+              mostUsedEmoji: "😂",
+              totalLikes: 8237,
+              persona: "Interaction Monster"
+            }))}`}
+            alt="Discord Wrapped Example"
             width={1080}
             height={1920}
             style={{
@@ -78,6 +87,7 @@ function IntroInformation({
               objectFit: "contain",
               borderRadius: 10,
             }}
+            unoptimized
           />
         </div>
       </div>
