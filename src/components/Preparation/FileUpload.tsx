@@ -5,7 +5,7 @@ import { Button } from "../ui/button";
 import { File } from "lucide-react";
 import MutedText from "../Wrapped/MutedText";
 
-function FileUpload({ onFileSelect }: { onFileSelect: (_file: File) => void }) {
+function FileUpload({ onFileSelect }: { onFileSelect: (file: File) => void }) {
   const inputRef = React.useRef<HTMLInputElement>(null);
 
   return (
