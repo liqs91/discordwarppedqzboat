@@ -1,26 +1,16 @@
 import Link from "next/link";
 import React from "react";
-import { Github, Twitter, MessageCircle } from "lucide-react";
+import { Github, Twitter } from "lucide-react";
 
 function Footer() {
   return (
     <footer className="border-t border-cyan-500/20 bg-slate-900/50 backdrop-blur-sm">
       <div className="container mx-auto px-6 py-8">
-        <div className="grid md:grid-cols-4 gap-8 mb-8">
-          {/* 主要链接 */}
+        <div className="grid md:grid-cols-5 gap-6 mb-8">
+          {/* Product Links */}
           <div>
             <h3 className="text-cyan-400 font-semibold mb-4">Product</h3>
             <ul className="space-y-2 text-sm text-slate-300">
-              <li>
-                <a
-                  href="https://phototourl.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-cyan-400 transition-colors"
-                >
-                  Photo to URL
-                </a>
-              </li>
               <li>
                 <Link href="/" className="hover:text-cyan-400 transition-colors">
                   Home
@@ -44,10 +34,20 @@ function Footer() {
             </ul>
           </div>
 
-          {/* 资源链接 */}
+          {/* Resources */}
           <div>
             <h3 className="text-cyan-400 font-semibold mb-4">Resources</h3>
             <ul className="space-y-2 text-sm text-slate-300">
+              <li>
+                <Link href="/docs/api" className="hover:text-cyan-400 transition-colors">
+                  API Reference
+                </Link>
+              </li>
+              <li>
+                <Link href="/docs/contributing" className="hover:text-cyan-400 transition-colors">
+                  Contributing
+                </Link>
+              </li>
               <li>
                 <Link href="/docs/privacy" className="hover:text-cyan-400 transition-colors">
                   Privacy Policy
@@ -58,26 +58,16 @@ function Footer() {
                   Terms of Service
                 </Link>
               </li>
-              <li>
-                <Link href="/docs/contributing" className="hover:text-cyan-400 transition-colors">
-                  Contributing
-                </Link>
-              </li>
-              <li>
-                <Link href="/docs/api" className="hover:text-cyan-400 transition-colors">
-                  API Reference
-                </Link>
-              </li>
             </ul>
           </div>
 
-          {/* 社区链接 */}
+          {/* Community */}
           <div>
             <h3 className="text-cyan-400 font-semibold mb-4">Community</h3>
             <ul className="space-y-2 text-sm text-slate-300">
               <li>
                 <a
-                  href="https://github.com/liqs91/discordwarppedqzboat"
+                  href="https://github.com/phototourl"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:text-cyan-400 transition-colors inline-flex items-center gap-2"
@@ -88,18 +78,7 @@ function Footer() {
               </li>
               <li>
                 <a
-                  href="https://discord.gg"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-cyan-400 transition-colors inline-flex items-center gap-2"
-                >
-                  <MessageCircle className="w-4 h-4" />
-                  Discord Server
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://twitter.com"
+                  href="https://x.com/phototourl"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:text-cyan-400 transition-colors inline-flex items-center gap-2"
@@ -111,84 +90,78 @@ function Footer() {
             </ul>
           </div>
 
-          {/* Badge 区域 */}
+          {/* Related Products */}
+          <div>
+            <h3 className="text-cyan-400 font-semibold mb-4">Related Products</h3>
+            <ul className="space-y-2 text-sm text-slate-300">
+              <li>
+                <a
+                  href="https://phototourl.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-cyan-400 transition-colors"
+                >
+                  Photo to URL
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://circlecropimage.qzboat.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-cyan-400 transition-colors"
+                >
+                  Circle Crop Image
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://www.image2url.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-cyan-400 transition-colors"
+                >
+                  Image to URL
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          {/* Powered By */}
           <div>
             <h3 className="text-cyan-400 font-semibold mb-4">Powered By</h3>
             <div className="flex flex-col gap-3">
               <a
-                href="https://nextjs.org"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-block"
-              >
-                <img
-                  src="https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=next.js&logoColor=white"
-                  alt="Next.js"
-                  className="h-6"
-                />
-              </a>
-              <a
-                href="https://react.dev"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-block"
-              >
-                <img
-                  src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB"
-                  alt="React"
-                  className="h-6"
-                />
-              </a>
-              <a
                 href="https://tailwindcss.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-block"
+                className="inline-block transition-transform hover:scale-105"
               >
                 <img
                   src="https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white"
                   alt="Tailwind CSS"
-                  className="h-6"
+                  className="h-6 w-auto"
+                />
+              </a>
+              <a
+                href="https://phototourl.com"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-block transition-transform hover:scale-105"
+              >
+                <img
+                  src="https://phototourl.com/og-image.png"
+                  alt="Photo to URL"
+                  className="h-6 w-auto"
                 />
               </a>
             </div>
           </div>
         </div>
 
-        {/* Photo to URL Badge */}
-        <div className="border-t border-cyan-500/20 py-4">
-          <div className="flex flex-wrap items-center justify-center gap-4">
-            <a
-              href="https://phototourl.com"
-              target="_blank"
-              rel="noreferrer"
-              className="inline-block transition-transform hover:scale-105 rounded-lg overflow-hidden shadow-md"
-              style={{
-                width: '200px',
-                height: '54px',
-                backgroundImage: 'url(https://phototourl.com/og-image.png)',
-                backgroundSize: 'cover',
-                backgroundPosition: 'center',
-                position: 'relative',
-              }}
-            >
-              <div className="absolute inset-0 bg-gradient-to-r from-teal-600/80 to-teal-500/80 flex items-center gap-2 px-3">
-                <div className="flex flex-col justify-center min-w-0">
-                  <div className="text-white font-bold text-sm leading-tight whitespace-nowrap drop-shadow-md">
-                    phototourl.com
-                  </div>
-                  <div className="text-white/95 text-[10px] leading-tight whitespace-nowrap drop-shadow-md">
-                    FREE IMAGE HOSTING
-                  </div>
-                </div>
-              </div>
-            </a>
-          </div>
-        </div>
-
-        {/* 版权信息 */}
+        {/* Copyright */}
         <div className="border-t border-cyan-500/20 pt-6 flex flex-col md:flex-row justify-between items-center text-sm text-slate-400">
-          <p>© 2024 Discord Wrapped. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Discord Wrapped. All rights reserved.</p>
           <div className="flex gap-4 mt-4 md:mt-0">
             <Link href="/legal/impressum" className="hover:text-cyan-400 transition-colors">
               Impressum
